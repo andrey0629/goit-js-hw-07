@@ -35,7 +35,7 @@ function createGallery(galleryItems) {
         return markup = `
         <li class="gallery__item">
             <a class="gallery__link" href="${original}">
-                <img class="gallery__image" src="${preview}" alt="Image description" />
+                <img class="gallery__image" src="${preview}" alt="${description}" />
             </a>
         </li>`
     }).join("");
@@ -45,7 +45,14 @@ function createGallery(galleryItems) {
 const open = (event => {
     event.preventDefault();
     const { target } = event;
-    let instance = new SimpleLightbox('.gallery a');
+    
+    let instance = new SimpleLightbox('.gallery a', {
+        /* options */
+        captionsData: "alt",
+        captionPosition: "bottom",
+        captionDelay: 250,
+});
+
         instance.on('show.simplelightbox', function () {
 	    // do something…
         });(`
@@ -63,5 +70,3 @@ const open = (event => {
 
 
 gallery.addEventListener("click", open)
-window.addEventListener("click", close)
-window.addEventListener("keydown", close)
