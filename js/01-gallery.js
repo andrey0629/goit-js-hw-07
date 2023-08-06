@@ -56,24 +56,6 @@ function createGallery(galleryItems) {
     }).join("");
 };
 
-// const item = document.querySelector(".gallery__item");
-
-// console.log(item);
-
-
-// function open(event) {
-//     event.preventDefault();
-//     const { target } = event;
-//     const instance = basicLightbox.create(`
-//         <img src="${target.dataset.source} width="800" height="600"">
-//         `)
-    
-//     // return galleryItems.map(({ preview, original, description }) => {
-//     //     const instance = basicLightbox.create(`
-//     //     <img src="${original}" width="800" height="600">`)    
-    
-//     instance.show()
-//     }
 
 const open = (event => {
     event.preventDefault();
@@ -81,78 +63,25 @@ const open = (event => {
     const instance = basicLightbox.create(`
         <img src="${target.dataset.source}">
         `)
-    instance.show()
-    const closeModal = (event => {
-        if (event.code === 'Escape') {
-            instance.close();
-            window.removeEventListener('keydown', closeModal);
+    instance.show();
+
+const onEscClick = (event => {
+    if (event.code !== 'Escape') {
+        return
         }
-    })
-    window.addEventListener('keydown', closeModal);
+        
+    instance.close();    
+    document.removeEventListener('keydown', onEscClick);
+
 });
 
+document.addEventListener("keydown", onEscClick)
+
+});
 
 gallery.addEventListener("click", open)
-window.addEventListener("click", close)
-window.addEventListener("keydown", close)
-
-// function close() {
-//     const instance = basicLightbox.create(`
-//         <img>`)    
-//         instance.close()
-//     }
 
 
-
-// const instance = basicLightbox.create(`
-//     <img src="assets/images/image.png" width="800" height="600">
-// `)
-
-// const previews = galleryItems.map(preview => preview.preview).join("  ");
-// console.log(preview);
-
-// // const originals = galleryItems.map(original => original.original).join("");
-// // const description = galleryItems.map(description => description.description).join("");
-
-
-// // const names = students.map(student => student.name);
-
-// // console.log(previews);
-
-// function createGalleryItem(galleryItems) {
-//     gallery.innerHTML =
-
-//     // const markup =
-//         `<li class="gallery__item">
-//         <a class="gallery__link" href="${originals}">
-//             <img class="gallery__image"
-//             src="${previews}"
-//             data-source="${originals}"
-//             alt="${description}"
-//             />
-//         </a>
-//         </li>`;
-
-//     // galleryItems.map(item => gallery.innerHTML = markup);
-// }
-            // data-source="${galleryItems.map(item => item.original)}"
-            // alt="${galleryItems.map(item => item.original)}"
-
-
-// console.log(list);
-// console.log(item);
-
-// gallery = galleryItems.map(bild => );
-
-// function createGalleryItem(galleryItems) {
-    // gallery.innerHTML =
-    //  
-
-    // galleryItems.map();
-    // gallery.append(...markup);
-    
-    // gallery.append(markup);
-    // return gallery;
 
 //   const galleryItem = document.createElement('li');
 //   galleryItem.classList.add('gallery__item');
@@ -175,27 +104,3 @@ window.addEventListener("keydown", close)
 // createGalleryItem()
 // const galleryMarkup = galleryItems.map(createGalleryItem);
 // gallery.append(...galleryMarkup);
-
-// function createMarkup(galItems) {
-//     galleryItems.map(({ preview, original, description }) => {
-    
-//        }).join("")
-//     const markup = `<li class="gallery__item">
-//     <a class="gallery__link" href="galleryItems.original">
-//         <img
-//         class="gallery__image"
-//         src="${preview}"
-//         data-source="${original}"
-//         alt="${description}"
-//         />
-//     </a>
-//     </li>`; 
-
-    
-
-//     list.innerHTML = markup;
-// }
-
-// createMarkup()
-
-

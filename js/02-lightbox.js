@@ -41,31 +41,12 @@ function createGallery(galleryItems) {
     }).join("");
 };
 
-
-const open = (event => {
-    event.preventDefault();
-    const { target } = event;
     
-    let instance = new SimpleLightbox('.gallery a', {
-        /* options */
-        captionsData: "alt",
-        captionPosition: "bottom",
-        captionDelay: 250,
-});
-
-        instance.on('show.simplelightbox', function () {
-	    // do something…
-        });(`
-        <img src="${target.dataset.source}">
-        `)
-
-    const closeModal = (event => {
-        if (event.code === 'Escape') {
-            instance.close();
-            window.removeEventListener('keydown', closeModal);
-        }
-    })
-    window.addEventListener('keydown', closeModal);
+let instance = new SimpleLightbox('.gallery a', {
+    /* options */
+    captionsData: "alt",
+    captionPosition: "bottom",
+    captionDelay: 250,
 });
 
 
