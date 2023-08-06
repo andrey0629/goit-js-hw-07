@@ -56,14 +56,19 @@ function createGallery(galleryItems) {
     }).join("");
 };
 
+// const image = document.querySelector("img")
 
 const open = (event => {
     event.preventDefault();
-    const { target } = event;
-    const instance = basicLightbox.create(`
+    if (!event.target.classList.contains("gallery__image")) {
+        return
+    }
+        const { target } = event;
+        const instance = basicLightbox.create(`
         <img src="${target.dataset.source}">
         `)
-    instance.show();
+        instance.show();
+    
 
 const onEscClick = (event => {
     if (event.code !== 'Escape') {
@@ -77,7 +82,7 @@ const onEscClick = (event => {
 
 document.addEventListener("keydown", onEscClick)
 
-});
+})
 
 gallery.addEventListener("click", open)
 
